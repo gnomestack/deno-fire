@@ -1,0 +1,73 @@
+
+vault:
+  uses: sops
+  create: true
+
+secrets:
+  MYSECRET: 
+    path: my.secret
+    create: true
+
+env:
+  RUN: "true"
+
+tasks:
+  hello: 
+    run: |
+      sleep 1
+
+  test_on_windows:
+    run: |
+      Write-Host "{{ secrets.MYSECRET }}"
+    shell: pwsh
+    if: "{{eq env.OS 'windows' }}"
+
+  test_on_linux:
+    run: |
+      Write-Host "{{ secrets.MYSECRET }}"
+    shell: pwsh
+    if: "{{eq env.OS 'linux' }}"
+
+  has_deps:
+    run: |
+      Write-Host "Hello Moon"
+    needs:
+      - hello
+    shell: pwsh
+  docker:
+    uses: docker://ubuntu
+    with:
+      args: bash -c 'echo hello world && echo \"$PWD\" && ls -la'
+
+  ssh:
+    uses: "ssh"
+    run: |
+      uptime
+    with:
+      targets: ["10.0.1.60"]
+      user: "server_admin"
+
+  deno:
+    run: |
+      console.log("Hello World");
+
+    shell: deno
+  pwsh_mods:
+    uses: pwsh-module
+    with:
+      packages: ["powershell-yaml"]
+      scope: 'currentuser'
+
+
+jobs:
+  install:
+    steps:
+      - id: install_mkcert
+        name: Install mkcert
+        uses: choco-package
+        with:
+          packages: ["mkcert"]
+  test:
+    steps:
+      - hello
+      - test_on_windows
