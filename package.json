@@ -1,0 +1,26 @@
+{
+    "name": "gs_fire",
+    "license": "MIT",
+    "description": "The GnomeStack fire task runner for Deno",
+    "icon": "https://raw.githubusercontent.com/gnomestack/deno-std/.eng/assets/icon.png",
+    "readme": "./README.md",
+    "module": "./mod.ts",
+    "repository": {
+        "url": "https://github.com/gnomestack/deno-fire",
+        "type": "git"
+    },
+    "author": {
+        "name": "BowTiedGnome",
+        "email": "119234633+bowtiedgnome@users.noreply.github.com"
+    },
+    "version": "0.0.0",
+    "deps": {
+        "std": "0.208.0",
+        "gs_std": "0.0.1",
+        "gs_shell": "0.0.0"
+    },
+    "dependencies": {
+        "handlbars": "^4.7.8",
+        "kdbxweb": "^2.1.1"
+    }
+}

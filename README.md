@@ -1,6 +1,10 @@
 # GnomeStack Fire Task Runner for Deno
 
-Fire is a cli/remote task runner that runs tasks or jobs
+Work less. Do more.
+
+![logo](./.eng/assets/icon.png)
+
+Fire is a cli/remote task runner that fires off (runs) tasks or jobs
 from a yaml file. Jobs are a series of tasks that are run
 in sequential order.  
 

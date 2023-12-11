@@ -2,11 +2,13 @@ import { Command } from "./deps.cli.ts";
 import { red } from "./deps.ts";
 import { run } from "./runners/console-runner.ts";
 import { IRunnerOptions } from "./runners/types.ts";
+import { VERSION } from "./mod-info.ts";
 
 const program = new Command();
 program.name("fire");
 
 program
+    .version(VERSION)
     .globalOption("--debug", "Enable debug mode")
     .globalOption("--trace", "Enable trace mode")
     .arguments("[targets...]")
@@ -14,7 +16,6 @@ program
     .option("-f, --fire-file <fireFile:string>", "Sets the fire file")
     .option("-ef, --env-file <...envFile:string>", "Sets an environment variable from a file")
     .option("-l, --list", "List Targets")
-    .option("-v, --version", "Print the version of the task runner")
     .option("--skip-needs", "Skips all task dependencies")
     .option("--cwd <cwd:string>", "Sets the working directory")
     .option("-t --timeout <timeout:number>", "The timeout in seconds for the task runner to complete")
@@ -34,7 +35,6 @@ program
             env,
             envFile,
             list,
-            version,
             skipNeeds,
             timeout,
             job,
@@ -48,7 +48,6 @@ program
             env,
             envFile,
             list,
-            version,
             skipNeeds,
             timeout,
             job,
