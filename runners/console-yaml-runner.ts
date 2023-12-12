@@ -153,8 +153,6 @@ async function importYamlFile(fireFile: string, ctx: RunnerExecutionContext) {
             } else {
                 throw new Error(`Job ${id} has zero steps. A job must have at least one step`);
             }
-
-            jobs.add(job);
         }
     }
 

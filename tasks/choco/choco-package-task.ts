@@ -127,8 +127,6 @@ export async function handleChocoPackageTask(ctx: IFireTaskExecutionContext) {
             }
 
             const lr = await ps.exec("choco", splat, {
-                stdout: "piped",
-                stderr: "piped",
                 signal: ctx.signal,
             });
 
@@ -150,8 +148,6 @@ export async function handleChocoPackageTask(ctx: IFireTaskExecutionContext) {
             }
 
             const lr = await ps.exec("choco", ["uninstall", pkg.id, "-y"], {
-                stdout: "piped",
-                stderr: "piped",
                 signal: ctx.signal,
             });
 
